@@ -14,7 +14,16 @@ public class CustomStringExamples {
 		
 		char testEmptyCharAt = emptyCS.charAt(3);
 		System.out.println(testEmptyCharAt);
-
+		
+		int size = cs.getSize();
+		System.out.println(size);
+		System.out.println(cs.length());
+		
+		System.out.println(cs.indexOf('d'));
+		System.out.println(cs.indexOf(100));
+		
+		System.out.println(cs.toString());
+		
 	}
 
 }

@@ -18,6 +18,19 @@ public class CustomString {
 	
 	
 	//Methods
+	public int getSize() {
+		int size = 0;
+		for(char c : values){
+			size++;
+		}
+		return size;
+	}
+	
+	//***NEEDS TO BE DEFINED***
+	public int getCapacity() {
+		return 1;
+	}
+	
 	public int length() {
 		return values.length;
 	}
@@ -40,7 +53,44 @@ public class CustomString {
 		}
 		return rValue;
 	}
+	//***NEEDS TO BE DEFINED***
+	public void append(char[] values) {
+		
+	}
 	
+	public int indexOf(char c) {
+		int rValue = 0;
+		for(int i = 0; i < values.length; i++) {
+			if(c == values[i]) {
+				rValue = i;
+				break;
+			}else {
+				rValue = -1;
+			}
+		}
+		return rValue;
+	}
+	//***NEEDS TO BE DEFINED***
+	public int indexOf(CustomString cs){
+		return -1;
+	}
+	
+	public int indexOf(int c) {
+		int rValue = 0;
+		for(int i = 0; i < values.length; i++) {
+			if(c == (char)values[i]) {
+				rValue = i;
+				break;
+			}else {
+				rValue = -1;
+			}
+		}
+		return rValue;
+	}
+	
+	public String toString() {
+		return new String(values);
+	}
 	
 	
 	
