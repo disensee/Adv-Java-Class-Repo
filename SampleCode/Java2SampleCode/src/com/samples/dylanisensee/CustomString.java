@@ -1,5 +1,7 @@
 package com.samples.dylanisensee;
 
+import java.util.Arrays;
+
 public class CustomString {
 	//Instance Variables
 	private char[] values;
@@ -72,7 +74,15 @@ public class CustomString {
 	}
 	//***NEEDS TO BE DEFINED***
 	public int indexOf(CustomString cs){
-		return -1;
+		int rValue = 0;
+		if(this.length() < cs.length()) {
+			System.out.println("Invalid entry");
+			rValue = -1;
+		}else {
+			rValue = 1;
+		}
+		
+		return rValue;
 	}
 	
 	public int indexOf(int c) {
