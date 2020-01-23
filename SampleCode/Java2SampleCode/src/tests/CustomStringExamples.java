@@ -7,6 +7,10 @@ public class CustomStringExamples {
 	public static void main(String[] args) {
 		char[] values = new char[] {'a', 'b', 'c'};
 		CustomString cs = new CustomString(values);
+		char[] compValues = new char[] {'a', 'b', 'c'};
+		CustomString compCs = new CustomString(compValues);
+		char[] compValues2 = new char[] {'d', 'e', 'f'};
+		CustomString compCs2 = new CustomString(compValues2);
 		CustomString emptyCS = new CustomString();
 		
 		char testCharAt = cs.charAt(2);
@@ -24,6 +28,16 @@ public class CustomStringExamples {
 		
 		System.out.println(cs.toString());
 		
+		System.out.println(cs.equals(compCs2));
+		
+		//cs.append(compValues2);
+		//System.out.println(cs);
+		
+		cs.toUpperCase();
+		System.out.println(cs);
+		
+		cs.resize(6);
+		System.out.println(cs);
 	}
 
 }
