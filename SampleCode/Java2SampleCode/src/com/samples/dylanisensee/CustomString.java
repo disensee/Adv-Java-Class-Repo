@@ -28,7 +28,6 @@ public class CustomString {
 		return size;
 	}
 	
-	//***NEEDS TO BE DEFINED*** (DONE ?)
 	public int getCapacity() {
 		int capacity = values.length;
 		return capacity;
@@ -112,14 +111,23 @@ public class CustomString {
 		}
 		return rValue;
 	}
-	//***NEEDS TO BE DEFINED***
+	
 	public int indexOf(CustomString cs){
 		int rValue = 0;
 		if(this.length() < cs.length()) {
 			System.out.println("Invalid entry");
 			rValue = -1;
 		}else {
-			rValue = 1;
+			for(int i = 0; i < values.length; i++) {
+				if(values[i] == cs.values[0]) {
+					for(int x = i; x < cs.values.length; x++) {
+						if(cs.values[1] == values[x]) {
+							rValue = i;
+							break;
+						}
+					}
+				}
+			}
 		}
 		
 		return rValue;
@@ -136,6 +144,19 @@ public class CustomString {
 			}
 		}
 		return rValue;
+	}
+	
+	public CustomString substring(int beginIndex, int endIndex) {
+		char[] newValues = new char[endIndex - beginIndex];
+		if(values.length < beginIndex || values.length < endIndex) {
+			System.out.println("Index is out of range");
+			newValues= null;
+		}else {
+			for(int i = beginIndex; i < endIndex; i++) {
+				newValues[i] = this.values[i];
+			}
+		}
+		return new CustomString(newValues);
 	}
 	
 	public boolean startsWith(CustomString prefix) {
