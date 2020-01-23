@@ -75,19 +75,19 @@ public class CustomString {
 		}
 		return rValue;
 	}
-	//***NEEDS TO BE DEFINED***
+	
 	public void append(char[] values) {
 		char[] appendedValue = new char[this.values.length + values.length];
 		
 		for(int i = 0; i < this.values.length; i++) {
 			appendedValue[i] = this.values[i];
-			for(int x = this.values.length; x < this.values.length + values.length; x++) {
-				appendedValue[x] = values[x];
-			}
 		}
+			for(int x = 0; x < values.length; x++) {
+				 appendedValue[x + this.values.length] = values[x];
+				}
 		this.values = appendedValue;
 	}
-	//***NEEDS TO BE DEFINED***
+
 	public void resize(int newCap) {
 		if(newCap < values.length) {
 			System.out.println("The new capacity is not larger than the current capacity");
@@ -128,7 +128,7 @@ public class CustomString {
 	public int indexOf(int c) {
 		int rValue = 0;
 		for(int i = 0; i < values.length; i++) {
-			if(c == (char)values[i]) {
+			if(c == (int)values[i]) {
 				rValue = i;
 				break;
 			}else {
@@ -138,12 +138,29 @@ public class CustomString {
 		return rValue;
 	}
 	
+	public boolean startsWith(CustomString prefix) {
+		boolean rValue = false;
+		if(prefix == null || this.values.length < prefix.values.length) {
+			rValue = false;
+		}else {
+			for(int i = 0; i < prefix.values.length; i++) {
+				if(values[i] == prefix.values[i]) {
+					rValue = true;
+				}else {
+					rValue = false;
+				}
+			}
+		}
+		return rValue;
+	}
+	
 	public CustomString toUpperCase() {
 		CustomString ucCustomString = new CustomString();
-		for(int i = 0; i < values.length; i++) {
-			if(Character.isLetter(values[i]) && Character.isLowerCase(values[i])) {
-				values[i] = Character.toUpperCase(values[i]);
-			}
+		ucCustomString.values = this.values;
+		for(int i = 0; i < ucCustomString.values.length; i++) {
+			char lowerCase = ucCustomString.values[i];
+			int upperCaseASCII = (int)lowerCase - 32;
+			ucCustomString.values[i] = (char)upperCaseASCII;
 		}
 		return ucCustomString;
 	}

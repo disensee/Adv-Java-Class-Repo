@@ -23,21 +23,25 @@ public class CustomStringExamples {
 		System.out.println(size);
 		System.out.println(cs.length());
 		
-		System.out.println(cs.indexOf('d'));
-		System.out.println(cs.indexOf(100));
+		System.out.println(cs.indexOf('a'));
+		System.out.println(cs.indexOf(98));
 		
 		System.out.println(cs.toString());
 		
 		System.out.println(cs.equals(compCs2));
 		
-		//cs.append(compValues2);
-		//System.out.println(cs);
 		
-		cs.toUpperCase();
-		System.out.println(cs);
+//		CustomString ucCS = cs.toUpperCase();
+//		System.out.println(ucCS.toString());
 		
 		cs.resize(6);
-		System.out.println(cs);
+		System.out.println(cs.length());
+		
+		compCs.append(compValues2);
+		System.out.println(compCs);
+		char[] anotherTest = new char[] {'a', 'b'};
+		CustomString anotherTestCs = new CustomString(anotherTest);
+		System.out.println(cs.startsWith(anotherTestCs));
 	}
 
 }
