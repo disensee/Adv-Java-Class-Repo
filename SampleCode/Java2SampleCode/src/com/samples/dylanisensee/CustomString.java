@@ -22,8 +22,10 @@ public class CustomString {
 	//Methods
 	public int getSize() {
 		int size = 0;
-		for(char c : values){
+		for(int i = 0; i < values.length; i++){
+			if(values[i] != '\u0000' ) {
 			size++;
+			}
 		}
 		return size;
 	}
@@ -31,6 +33,19 @@ public class CustomString {
 	public int getCapacity() {
 		int capacity = values.length;
 		return capacity;
+	}
+	
+	
+	public void append(char[] values) {
+		char[] appendedValue = new char[this.values.length + values.length];
+		
+		for(int i = 0; i < this.values.length; i++) {
+			appendedValue[i] = this.values[i];
+		}
+			for(int x = 0; x < values.length; x++) {
+				 appendedValue[x + this.values.length] = values[x];
+				}
+		this.values = appendedValue;
 	}
 	
 	public int length() {
@@ -75,28 +90,79 @@ public class CustomString {
 		return rValue;
 	}
 	
-	public void append(char[] values) {
-		char[] appendedValue = new char[this.values.length + values.length];
-		
-		for(int i = 0; i < this.values.length; i++) {
-			appendedValue[i] = this.values[i];
-		}
-			for(int x = 0; x < values.length; x++) {
-				 appendedValue[x + this.values.length] = values[x];
-				}
-		this.values = appendedValue;
-	}
-
-	public void resize(int newCap) {
-		if(newCap < values.length) {
-			System.out.println("The new capacity is not larger than the current capacity");
+	public boolean equalsIgnoreCase(CustomString cs) {
+		boolean rValue = false;
+		if(cs == null) {
+			rValue = false;
 		}else {
-			char[] newCapArr = new char[newCap];
 			for(int i = 0; i < values.length; i++) {
-				newCapArr[i] = values[i];
+				if((int)values[i] == (int)cs.values[i] || (int)values[i] + 32 == (int)cs.values[i] || (int)values[i] - 32 == (int)cs.values[i]){
+					rValue = true;
+				}else {
+					rValue = false;
+					break;
+				}
 			}
-			values = newCapArr;
 		}
+		return rValue;
+	}
+	
+	public int compareTo(CustomString cs) {
+		int rValue = 0;
+		if(cs == null) {
+			rValue = 1;
+		}else if (values.length < cs.values.length) {
+			rValue = -1;
+		}else if (values.length > cs.values.length) {
+			rValue = 1;
+		}else{
+			for(int i = 0; i < values.length; i++) {
+				if((int) values[i] == (int)cs.values[i]) {
+					continue;
+				}else if((int)values[i] < (int)cs.values[i]) {
+					rValue = -1;
+				}else {
+					rValue = 1;
+				}
+			}
+		
+		}
+		return rValue;
+	}
+	
+	public boolean startsWith(CustomString prefix) {
+		boolean rValue = false;
+		if(prefix == null || this.values.length < prefix.values.length) {
+			rValue = false;
+		}else {
+			for(int i = 0; i < prefix.values.length; i++) {
+				if(values[i] == prefix.values[i]) {
+					rValue = true;
+				}else {
+					rValue = false;
+				}
+			}
+		}
+		return rValue;
+	}
+	
+	public boolean endsWith(CustomString suffix) {
+		boolean rValue = false;
+		if(suffix == null || suffix.length() > this.length()) {
+			rValue = false;
+		}else {
+			for(int i = values.length - suffix.values.length; i < values.length; i++) {
+				if(suffix.values[0] == values[i]) {
+					for(int x = 1; x < suffix.length(); x++) {
+						if(suffix.values[x] == values[i + x]) {
+							rValue = true;
+						}
+						break;
+					}
+				}
+			}
+		}
+		return rValue;
 	}
 	
 	public int indexOf(char c) {
@@ -113,16 +179,18 @@ public class CustomString {
 	}
 	
 	public int indexOf(CustomString cs){
-		int rValue = 0;
+		int rValue = -1;
 		if(this.length() < cs.length()) {
 			System.out.println("Invalid entry");
 			rValue = -1;
 		}else {
 			for(int i = 0; i < values.length; i++) {
 				if(values[i] == cs.values[0]) {
-					for(int x = i; x < cs.values.length; x++) {
-						if(cs.values[1] == values[x]) {
+					for(int x = 1; x < cs.values.length; x++) {
+						if(cs.values[x] == values[x+i]) {
 							rValue = i;
+						}else {
+							rValue = -1;
 							break;
 						}
 					}
@@ -159,22 +227,57 @@ public class CustomString {
 		return new CustomString(newValues);
 	}
 	
-	public boolean startsWith(CustomString prefix) {
+	
+	public CustomString replace(CustomString target, CustomString replacement) {
+		CustomString rCs = new CustomString(this.values);
+		char[] newValue = new char[rCs.values.length];
+		for(int i = 0; i < rCs.values.length; i++) {
+			newValue[i] = rCs.values[i];
+			if(target.values[0] == rCs.values[i]) {
+				for(int j = 0; j < replacement.values.length; j++) {
+					newValue[i] = replacement.values[j];
+					i++;
+				}
+			}
+		}
+		rCs.values = newValue;
+		return rCs;
+	}
+
+	public void resize(int newCap) {
+		if(newCap < values.length) {
+			System.out.println("The new capacity is not larger than the current capacity");
+		}else {
+			char[] newCapArr = new char[newCap];
+			for(int i = 0; i < values.length; i++) {
+				newCapArr[i] = values[i];
+			}
+			values = newCapArr;
+		}
+	}
+	
+	public boolean contains(CustomString cs) {
 		boolean rValue = false;
-		if(prefix == null || this.values.length < prefix.values.length) {
+		if(this.values.length < cs.values.length) {
+			System.out.println("This CustomString is smaller than the argument. Invalid Entry");
 			rValue = false;
 		}else {
-			for(int i = 0; i < prefix.values.length; i++) {
-				if(values[i] == prefix.values[i]) {
-					rValue = true;
-				}else {
-					rValue = false;
-				}
+			for(int i = 0; i < values.length; i++) {
+				if(cs.values[0] == values[i]) {
+					for(int x = 1; x < cs.values.length; x++) {
+						if(cs.values[x] == values[x + i]) {
+							rValue = true;
+						}else {
+							rValue = false;
+							break;
+						}
+					}
+				} 
 			}
 		}
 		return rValue;
 	}
-	
+
 	public CustomString toUpperCase() {
 		CustomString ucCustomString = new CustomString();
 		ucCustomString.values = this.values;
@@ -188,6 +291,18 @@ public class CustomString {
 	
 	public String toString() {
 		return new String(values);
+	}
+	
+	public char[] toCharArray() {
+		char[] rCharArr = new char[this.getSize()];
+		for(int i = 0; i < values.length; i++) {
+			if(values[i] != '\u0000') {
+				rCharArr[i] = values[i];
+			}else {
+				rCharArr[i] = '\u0000';
+			}
+		}
+		return rCharArr;
 	}
 	
 	
