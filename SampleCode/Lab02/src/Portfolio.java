@@ -1,16 +1,17 @@
 import java.util.ArrayList;
 
 public class Portfolio {
-	private ArrayList<Owner> ownerList = new ArrayList();
-	private ArrayList<CD> cdList = new ArrayList();
+	private ArrayList<Owner> ownerList;// = new ArrayList();
+	private ArrayList<CD> cdList;// = new ArrayList();
 	
 	//Constructors
 	public Portfolio(Owner o) {
 		ownerList = new ArrayList();
+		cdList = new ArrayList();
 		addOwnerToPortfolio(o);
 	}
 	
-	public Portfolio(ArrayList<Owner> owners ) {
+	public Portfolio(ArrayList<Owner> owners) {
 		for(Owner o : owners) {
 			addOwnerToPortfolio(o);
 		}
@@ -42,7 +43,15 @@ public class Portfolio {
 	}
 	
 	public void generatePortfolioSummaryReport() {
-		
+		System.out.println("***Portfolio Summary Report***\n");
+		System.out.println("***Owners***");
+		for(int i = 0; i < ownerList.size(); i++) {
+			System.out.println("Owner " + i + 1 + ": " + ownerList.get(i).getLastName() + ", " + ownerList.get(i).getFirstName() + "\n");
+		}
+		System.out.println("***CDs***");
+		for(CD cd : cdList) {
+			System.out.println(cd.toString() + "\n");
+		}
 	}
 	
 	public CD findCDWithMaxMaturityValue() {
@@ -54,7 +63,7 @@ public class Portfolio {
 	}
 	
 	public String toString() {
-		return "Owners: " + ownerList.toString() + 
+		return "Owner(s): " + ownerList.toString() + "\n" + 
 				"CDs: " + cdList.toString();
 	}
 	

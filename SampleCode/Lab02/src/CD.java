@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,34 +32,46 @@ public class CD {
 	
 	//Methods ***THESE NEED TO BE DEFINED***
 	public Date calcMaturityDate() {
-		Date maturityDate = new Date(this.purchaseDate.getYear(), this.purchaseDate.getDate(), this.purchaseDate.getMonth());
+		Date maturityDate = new Date(this.purchaseDate.getYear(), this.purchaseDate.getMonth(), this.purchaseDate.getDate());
 		
-		//maturityDate.setMonth(maturityDate.getMonth() + months);
+		maturityDate.setMonth(maturityDate.getMonth() + months);
 		
 		
 		return maturityDate;
 	}
 	
 	public long calcValueAtMaturity() {
-		return 1;
+		double stepOne = (1 + (annualRate/100.00)/compoundingType);
+		double stepTwo = Math.pow(stepOne, (compoundingType * (months/12.00)));
+		long valAtMaturity = Math.round((amountInCents * stepTwo));
+		
+		return valAtMaturity;
 	}
 	
 	public String toString() {
+		DecimalFormat twoDecimal = new DecimalFormat("0.00");
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		Date purchaseDate = this.purchaseDate;
 		Date maturityDate = this.calcMaturityDate();
 		String formattedPurchaseDate = formatter.format(purchaseDate);
 		String formattedMaturityDate = formatter.format(maturityDate);
-		
+		String compoundType;
+		if(compoundingType == 1) {
+			compoundType = "Annually";
+		}else if(compoundingType == 12) {
+			compoundType = "Montly";
+		}else {
+			compoundType = "Daily";
+		}
 		
 		return "Name: " + cdName + "\n" + 
-				"Amount Invested: " + amountInCents/100 + "\n"  + 
+				"Amount Invested: " + "$" + twoDecimal.format(amountInCents/100) + "\n"  + 
 				"Purchase Date: " + formattedPurchaseDate + "\n"  + 
 				"Term (Months): " + months + "\n"  + 
-				"Annual Rate: " + annualRate + "\n"  + 
-				"Compounding Type: " + compoundingType + "\n"  +
+				"Annual Rate: " + annualRate + "%" + "\n"  + 
+				"Compounding Type: " + compoundType + "\n"  +
 				"Maturity Date: " + formattedMaturityDate + "\n"  +
-				"Value at Maturity: " + this.calcValueAtMaturity();
+				"Value at Maturity: " + "$" + this.calcValueAtMaturity()/100.00;
 	}
 
 	//Accessors

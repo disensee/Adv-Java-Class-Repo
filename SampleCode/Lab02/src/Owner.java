@@ -17,8 +17,7 @@ public class Owner {
 	}
 	
 	public String toString() {
-		return "First Name: " + firstName + 
-				"Last Name: " + lastName;
+		return this.getLastName() +  ", " + getFirstName();
 	}
 	
 	

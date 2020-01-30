@@ -24,6 +24,11 @@ public class Student extends Person {
 		System.out.println("Student Number: " + getStudentNumber());
 	}
 	
+	public void reset(String name, int studentNumber) {
+		setName(name);
+		setStudentNumber(studentNumber);
+	}
+	
 	//Getters and setters
 	public int getStudentNumber() {
 		return studentNumber;
