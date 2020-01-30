@@ -6,10 +6,9 @@ public class Owner {
 	private Portfolio portfolio;
 	
 	//Constructor
-	public Owner(String firstName, String lastName, Portfolio portfolio) {
+	public Owner(String firstName, String lastName) {
 		setFirstName(firstName);
 		setLastName(lastName);
-		assignPortfolioToOwner(portfolio);
 	}
 	
 	//Methods

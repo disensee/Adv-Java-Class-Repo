@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CD {
@@ -25,11 +26,17 @@ public class CD {
 		setAnnualRate(annualRate);
 		setCompoundingType(compoundingType);
 		setPortfolio(portfolio);
+		portfolio.addCdToPortfolio(this);
 	}
 	
 	//Methods ***THESE NEED TO BE DEFINED***
 	public Date calcMaturityDate() {
-		return new Date();
+		Date maturityDate = new Date(this.purchaseDate.getYear(), this.purchaseDate.getDate(), this.purchaseDate.getMonth());
+		
+		//maturityDate.setMonth(maturityDate.getMonth() + months);
+		
+		
+		return maturityDate;
 	}
 	
 	public long calcValueAtMaturity() {
@@ -37,12 +44,21 @@ public class CD {
 	}
 	
 	public String toString() {
-		return "Name: " + cdName + 
-				"Amount In Cents: " + amountInCents + 
-				"Purchase Date: " + purchaseDate + 
-				"Months: " + months + 
-				"Annual Rate: " + annualRate + 
-				"Compounding Type: " + compoundingType;
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		Date purchaseDate = this.purchaseDate;
+		Date maturityDate = this.calcMaturityDate();
+		String formattedPurchaseDate = formatter.format(purchaseDate);
+		String formattedMaturityDate = formatter.format(maturityDate);
+		
+		
+		return "Name: " + cdName + "\n" + 
+				"Amount Invested: " + amountInCents/100 + "\n"  + 
+				"Purchase Date: " + formattedPurchaseDate + "\n"  + 
+				"Term (Months): " + months + "\n"  + 
+				"Annual Rate: " + annualRate + "\n"  + 
+				"Compounding Type: " + compoundingType + "\n"  +
+				"Maturity Date: " + formattedMaturityDate + "\n"  +
+				"Value at Maturity: " + this.calcValueAtMaturity();
 	}
 
 	//Accessors

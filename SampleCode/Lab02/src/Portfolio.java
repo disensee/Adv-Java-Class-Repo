@@ -8,12 +8,11 @@ public class Portfolio {
 	public Portfolio(Owner o) {
 		ownerList = new ArrayList();
 		addOwnerToPortfolio(o);
-		
 	}
 	
 	public Portfolio(ArrayList<Owner> owners ) {
 		for(Owner o : owners) {
-			ownerList.add(o);
+			addOwnerToPortfolio(o);
 		}
 			
 	}
@@ -24,14 +23,11 @@ public class Portfolio {
 		}
 		
 		o.assignPortfolioToOwner(this);
-		//o.setPortfolio(this);
 	}
 	
 	public void addCdToPortfolio(CD cd) {
 		if(!cdList.contains(cd)) {
 			cdList.add(cd);
-			
-			cd.setPortfolio(this);
 		}
 	}
 	
@@ -45,7 +41,22 @@ public class Portfolio {
 		return returnCd;
 	}
 	
-	//PICK UP WITH PORTFOLIO METHODS
+	public void generatePortfolioSummaryReport() {
+		
+	}
+	
+	public CD findCDWithMaxMaturityValue() {
+		return null;
+	}
+	
+	public CD findCDMaturingSoonest() {
+		return null;
+	}
+	
+	public String toString() {
+		return "Owners: " + ownerList.toString() + 
+				"CDs: " + cdList.toString();
+	}
 	
 	//Accessors
 	public ArrayList<Owner> getOwnerList() {
