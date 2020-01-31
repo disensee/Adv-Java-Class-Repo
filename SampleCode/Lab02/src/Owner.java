@@ -45,7 +45,4 @@ public class Owner {
 	public void setPortfolio(Portfolio portfolio) {
 		this.portfolio = portfolio;
 	}
-	
-	
-	
 }

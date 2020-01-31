@@ -17,7 +17,7 @@ public class CD {
 	public static final int CD_COMPOUND_MONTHLY = 12;
 	public static final int CD_COMPOUND_DAILY = 365;
 	
-	//Constructors
+	//Constructor(s)
 	public CD(String cdName, long amountInCents, Date purchaseDate, int months, 
 			  double annualRate, int compoundingType, Portfolio portfolio) {
 		setCdName(cdName);
@@ -30,12 +30,10 @@ public class CD {
 		portfolio.addCdToPortfolio(this);
 	}
 	
-	//Methods ***THESE NEED TO BE DEFINED***
+	//Methods
 	public Date calcMaturityDate() {
 		Date maturityDate = new Date(this.purchaseDate.getYear(), this.purchaseDate.getMonth(), this.purchaseDate.getDate());
-		
 		maturityDate.setMonth(maturityDate.getMonth() + months);
-		
 		
 		return maturityDate;
 	}
@@ -49,7 +47,6 @@ public class CD {
 	}
 	
 	public String toString() {
-		DecimalFormat twoDecimal = new DecimalFormat("0.00");
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		Date purchaseDate = this.purchaseDate;
 		Date maturityDate = this.calcMaturityDate();
@@ -65,7 +62,7 @@ public class CD {
 		}
 		
 		return "Name: " + cdName + "\n" + 
-				"Amount Invested: " + "$" + twoDecimal.format(amountInCents/100) + "\n"  + 
+				"Amount Invested: " + "$" + amountInCents/100.00 + "\n"  + 
 				"Purchase Date: " + formattedPurchaseDate + "\n"  + 
 				"Term (Months): " + months + "\n"  + 
 				"Annual Rate: " + annualRate + "%" + "\n"  + 

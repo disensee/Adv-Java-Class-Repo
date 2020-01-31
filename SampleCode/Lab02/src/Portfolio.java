@@ -1,13 +1,12 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Portfolio {
-	private ArrayList<Owner> ownerList;// = new ArrayList();
-	private ArrayList<CD> cdList;// = new ArrayList();
+	private ArrayList<Owner> ownerList;
+	private ArrayList<CD> cdList;
 	
 	//Constructors
 	public Portfolio(Owner o) {
-		ownerList = new ArrayList();
-		cdList = new ArrayList();
 		addOwnerToPortfolio(o);
 	}
 	
@@ -19,6 +18,8 @@ public class Portfolio {
 	}
 	//Methods
 	public void addOwnerToPortfolio(Owner o) {
+		ownerList = new ArrayList();
+		cdList = new ArrayList();
 		if(!ownerList.contains(o)) {
 			ownerList.add(o);
 		}
@@ -45,21 +46,42 @@ public class Portfolio {
 	public void generatePortfolioSummaryReport() {
 		System.out.println("***Portfolio Summary Report***\n");
 		System.out.println("***Owners***");
-		for(int i = 0; i < ownerList.size(); i++) {
-			System.out.println("Owner " + i + 1 + ": " + ownerList.get(i).getLastName() + ", " + ownerList.get(i).getFirstName() + "\n");
+		for(Owner o : ownerList) {
+			System.out.println("Owner " + ownerList.indexOf(o) + 1 + ": " + o.toString());
 		}
-		System.out.println("***CDs***");
+		
+		System.out.println("\n***CDs***");
 		for(CD cd : cdList) {
 			System.out.println(cd.toString() + "\n");
 		}
+		
+		System.out.println("***CD with Max Value At Maturity***");
+		System.out.println(findCDWithMaxMaturityValue() + "\n");
+		
+		System.out.println("***CD that is Maturing the Soonest***");
+		System.out.println(findCDMaturingSoonest());
 	}
 	
 	public CD findCDWithMaxMaturityValue() {
-		return null;
+		CD returnCD = cdList.get(0);
+		long valueAtMaturity = cdList.get(0).calcValueAtMaturity();
+		for(int i = 1; i < cdList.size(); i++) {
+			if(cdList.get(i).calcValueAtMaturity() > returnCD.calcValueAtMaturity()){
+				returnCD = cdList.get(i);
+			}
+		}
+		return returnCD;
 	}
 	
 	public CD findCDMaturingSoonest() {
-		return null;
+		CD returnCD = cdList.get(0);
+		Date maturityDate = cdList.get(0).calcMaturityDate();
+		for(int i = 1; i < cdList.size(); i++) {
+			if(cdList.get(i).calcMaturityDate().before(returnCD.calcMaturityDate())) {
+				returnCD = cdList.get(i);
+			}
+		}
+		return returnCD;
 	}
 	
 	public String toString() {
