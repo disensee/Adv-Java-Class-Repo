@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="com.samples.dylanisensee.CustomString"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="SomeClass"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
 </qualifiedTypeNameHistroy>

@@ -14,13 +14,22 @@ public class Student extends Person {
 	}
 	
 	//Methods
+	public boolean equals(Object o) {
+		if(!(o instanceof Student)) {
+			System.out.println("I need a student");
+			System.exit(0);
+		}
+		return this.equals((Student) o);
+	}
+	
 	public boolean equals(Student otherStudent) {
 		return this.hasSameName(otherStudent) && this.getStudentNumber() == otherStudent.getStudentNumber();
 	}
 	
 	@Override
-	public final void writeOutput() {
-		System.out.println("Name: " + getName());
+	public void writeOutput() {
+		//System.out.println("Name: " + getName());
+		super.writeOutput();
 		System.out.println("Student Number: " + getStudentNumber());
 	}
 	
