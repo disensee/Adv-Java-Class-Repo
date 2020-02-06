@@ -21,6 +21,18 @@ public class Faculty extends Employee {
 		System.out.println("Title: " + getTitle());;
 	}
 	
+	public boolean equals(Object o) {
+		if(!(o instanceof Faculty)) {
+			System.out.println("Please compare a faculty member");
+			System.exit(0);
+		}
+		return this.equals((Faculty) o);
+	}
+	
+	public boolean equals(Faculty otherFaculty) {
+		return super.isSameEmployee(otherFaculty);
+	}
+	
 	//Accessors
 	public String getTitle() {
 		return title;

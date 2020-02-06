@@ -43,7 +43,7 @@ public class Student extends Person {
 	}
 
 	public void setStudentNumber(int studentNumber) {
-		if(studentNumber <=0) {
+		if(studentNumber <= 0) {
 			System.out.println("Student number must be positive");
 			System.exit(0);
 		}

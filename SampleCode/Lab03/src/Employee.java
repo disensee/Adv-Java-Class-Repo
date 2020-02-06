@@ -23,6 +23,10 @@ public abstract class Employee extends Person{
 		System.out.println("Department: " + getDepartment());
 	}
 	
+	public boolean isSameEmployee(Employee otherEmployee) {
+		return this.getEmployeeId() == otherEmployee.getEmployeeId();
+	}
+	
 	//Accessors
 	public int getEmployeeId() {
 		return employeeId;

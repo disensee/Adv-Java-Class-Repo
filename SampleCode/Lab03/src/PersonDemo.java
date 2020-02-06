@@ -38,6 +38,19 @@ public class PersonDemo {
 			p.writeOutput();
 			System.out.println();
 		}
+		
+		Faculty f1 = new Faculty("Patrick", 2345, "Information Technology", "Database Administrator");
+		Faculty f2 = new Faculty("Pat", 2345, "Information Technology", "Application Developer");
+		Faculty f3 = new Faculty("Dylan", 5678, "Information Technology", "Application Developer");
+		
+		System.out.println("Faculty.equals() known true case: " + f1.equals(f2));
+		System.out.println("Faculty.equals() known false case: " + f2.equals(f3));
+		System.out.println();
+		
+		Staff s1 = new Staff("Bob", 34567, "Food Services", 4);
+		System.out.println("Pay grade precondition test - known true case: " + s1.getName() + "'s " + "pay grade is " + s1.getPayGrade());
+		//Staff invalidPayGrade0 = new Staff("Linda", 6205, "Food Services", 0);
+		Staff invalidPayGrade21 = new Staff("Gene", 6206, "Food Services", 21);
 
 	}
 
