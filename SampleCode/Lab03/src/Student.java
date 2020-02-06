@@ -1,5 +1,5 @@
 
-public class Student extends Person {
+public class Student extends Person implements Comparable<Student>{
 	//Instance variables
 	private int studentNumber;
 	
@@ -37,6 +37,38 @@ public class Student extends Person {
 		setStudentNumber(studentNumber);
 	}
 	
+//	Order based on student ID number
+//	@Override
+//	public int compareTo(Student s) {
+//		//Student otherStudent = (Student)s;
+//		return this.studentNumber - otherStudent.studentNumber;
+//	}
+	
+//	Order lexicographically
+	@Override 
+	public int compareTo(Student s) {
+		Student otherStudent = (Student)s;
+		return (this.getName().compareTo(otherStudent.getName()));
+	}
+	
+//	Bubble Sort for student objects
+	public static Student[] bubbleSortStudentArr(Student[] stuArr) {
+		boolean studentSwapped = true;
+		while(studentSwapped) {
+			studentSwapped = false;
+			for(int i = 0; i < stuArr.length - 1; i++) {
+				if(stuArr[i].getStudentNumber() > stuArr[i + 1].getStudentNumber()) {
+					Student holdStudent = stuArr[i];
+					stuArr[i] = stuArr[i +  1];
+					stuArr[i + 1] = holdStudent;
+					studentSwapped = true;
+				}
+			}
+		}
+		return stuArr;
+	}
+	
+	
 	//Getters and setters
 	public int getStudentNumber() {
 		return studentNumber;
@@ -49,6 +81,4 @@ public class Student extends Person {
 		}
 		this.studentNumber = studentNumber;
 	}
-	
-	
 }

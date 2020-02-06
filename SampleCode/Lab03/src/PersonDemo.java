@@ -1,33 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PersonDemo {
 
 	public static void main(String[] args) {
-		/*
-		Person s = new Student("Fred Flinstone", 12345); //Polymorphism(person variable, student constructed)
-		
-		((Student) s).reset("Barney Rubble", 432134);
-		
-		s.writeOutput();
-		
-		Undergraduate greg = new Undergraduate("Greg", 12345678, 4);
-		
-		Undergraduate fred = new Undergraduate("Fred", 87654321, 1);
-		
-		fred.reset("Fred Jr.", 12345679);
-		fred.writeOutput();
-		
-		if(greg.equals(fred)) {
-			System.out.println("ERROR");
-		}
-		
-		Student bob = new Student("Bob", 12345);
-		Undergraduate mike = new Undergraduate("Mike", 54321, 1);
-		
-		
-		SomeClass.compareNumbers(bob, mike);
-		*/
-		//---***LAB03 PROGRAM***---
+		System.out.println("LAB03 PROGRAM OUTPUT:\n");
 		ArrayList<Person> people = new ArrayList();
 		people.add(new Undergraduate("Spongebob", 12345, 1));
 		people.add(new Student("Squidward", 10));
@@ -49,9 +26,29 @@ public class PersonDemo {
 		
 		Staff s1 = new Staff("Bob", 34567, "Food Services", 4);
 		System.out.println("Pay grade precondition test - known true case: " + s1.getName() + "'s " + "pay grade is " + s1.getPayGrade());
+		System.out.println("Uncomment line 54 or 55 to test known false cases on the Staff pay grade precondition");
 		//Staff invalidPayGrade0 = new Staff("Linda", 6205, "Food Services", 0);
-		Staff invalidPayGrade21 = new Staff("Gene", 6206, "Food Services", 21);
-
+		//Staff invalidPayGrade21 = new Staff("Gene", 6206, "Food Services", 21);
+		System.out.println();
+		
+		Student[] stuArr = new Student[5];
+		stuArr[0] = new Student("Jack", 12345);
+		stuArr[1] = new Student("Paul", 12349);
+		stuArr[2] = new Student("Sally", 12348);
+		stuArr[3] = new Student("Emma", 12347);
+		stuArr[4] = new Student("Pete", 12346);
+		
+		Arrays.sort(stuArr);
+		System.out.println("\nTesting compareTo...\n");
+		for(Student s : stuArr) {
+			s.writeOutput();;
+		}
+		System.out.println("\nTesting bubble sort...\n");
+		Student.bubbleSortStudentArr(stuArr);
+		
+		for(Student s : stuArr) {
+			s.writeOutput();;
+		}
 	}
 
 }
