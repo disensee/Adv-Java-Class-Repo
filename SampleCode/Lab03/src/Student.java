@@ -40,7 +40,7 @@ public class Student extends Person implements Comparable<Student>{
 //	Order based on student ID number
 //	@Override
 //	public int compareTo(Student s) {
-//		//Student otherStudent = (Student)s;
+//		Student otherStudent = (Student)s;
 //		return this.studentNumber - otherStudent.studentNumber;
 //	}
 	
