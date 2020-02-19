@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Exercise1 {
+public class ExceptionDemo {
 	public static void main(String[] args) {
 		System.out.println("Enter the number of donuts: ");
 		Scanner s = new Scanner(System.in);
@@ -31,7 +31,7 @@ public class Exercise1 {
 			System.out.println(msg);
 			
 		}
-		catch(ArithmeticException ae){//Order exceptions from most specific to most general
+		catch(ArithmeticException ae){
 			System.out.println("You can't have donuts without milk!");
 			main(null);
 		}
