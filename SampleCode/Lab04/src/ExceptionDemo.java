@@ -43,6 +43,7 @@ public class ExceptionDemo {
 			System.out.println(e.getMessage());
 			System.out.println("Go get donuts and milk");
 		}
+		s.close();
 	}
 }
 

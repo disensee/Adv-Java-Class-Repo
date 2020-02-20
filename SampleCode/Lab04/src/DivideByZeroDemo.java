@@ -40,25 +40,27 @@ public class DivideByZeroDemo {
 			System.out.println("Please enter a number.");
 			giveSecondChance();
 		}
+		s.close();
 		System.out.println("End of program.");
+		
 	}
 	
 	public void giveSecondChance() throws DivideByZeroException{
 		Scanner s = new Scanner(System.in);
-			System.out.println("Try again:");
-			System.out.println("Enter a numerator:");
-			int num = Integer.parseInt(s.nextLine());
-			System.out.println("Enter a denominator:");
-			int denom = Integer.parseInt(s.nextLine());
-			
-			if(denom == 0) {
-				System.out.println("I cannot do division by zero.");
-				System.out.println("Since I cannot do what you want,");
-				System.out.println("the program will now end.");
-				System.exit(0);
-			}
-			
-			double quotient = num/(double)denom;
-			System.out.println(quotient);
+		System.out.println("Try again:");
+		System.out.println("Enter a numerator:");
+		int num = Integer.parseInt(s.nextLine());
+		System.out.println("Enter a denominator:");
+		int denom = Integer.parseInt(s.nextLine());
+		
+		if(denom == 0) {
+			System.out.println("I cannot do division by zero.");
+			System.out.println("Since I cannot do what you want,");
+			System.out.println("the program will now end.");
+			System.exit(0);
+		}
+		s.close();
+		double quotient = num/(double)denom;
+		System.out.println(quotient);
 	}
 }
