@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class TextFileAnalyzer {
@@ -13,7 +14,7 @@ public class TextFileAnalyzer {
 	//Methods
 	public TextFileAnalyzer(File inputFile, ArrayList<Word> words) {//, File statsXMLFile) {
 		setInputFile(inputFile);
-		setStatsXMLFile(statsXMLFile);
+		//setStatsXMLFile(statsXMLFile);
 		setWords(words);
 	}
 	
@@ -23,13 +24,12 @@ public class TextFileAnalyzer {
 			throw new FileNotFoundException();
 		}
 		while(input.hasNextLine()) {
-			while(input.hasNextLine()) {
-				String line = input.nextLine();
-				String[] lineData = line.split(" ");
-				for(String s : lineData) {
-					Word word = new Word(s);
-					words.add(word);
-				}
+			String line = input.nextLine();
+			line = line.replaceAll("\\p{Punct}", "");
+			String[] lineData = line.split(" ");
+			for(String s : lineData) {
+				Word word = new Word(s);
+				words.add(word);
 			}
 		}
 		input.close();
