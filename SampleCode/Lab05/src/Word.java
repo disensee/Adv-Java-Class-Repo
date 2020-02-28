@@ -1,5 +1,5 @@
 
-public class Word implements Comparable{
+public class Word implements Comparable<Word>{
 	
 	private String word;
 	private int usageCnt;
@@ -7,18 +7,25 @@ public class Word implements Comparable{
 	//Constructor
 	public Word(String word) {
 		setWord(word);
+		setUsageCnt(1);
 	}
-
+	
+	//Methods
+	public void incrementUsageCnt() {
+		this.usageCnt++;
+	}
+	
 	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compareTo(Word word) {
+		Word otherWord = (Word)word;
+		return this.getUsageCnt() - otherWord.getUsageCnt();
 	}
 
 	@Override
 	public String toString(){
 		return this.word;
 	}
+	
 	//Accessors
 	public String getWord() {
 		return word;
