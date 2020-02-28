@@ -38,18 +38,18 @@ public class Student extends Person implements Comparable<Student>{
 	}
 	
 //	Order based on student ID number
-//	@Override
-//	public int compareTo(Student s) {
-//		Student otherStudent = (Student)s;
-//		return this.studentNumber - otherStudent.studentNumber;
-//	}
-	
-//	Order lexicographically
-	@Override 
+	@Override
 	public int compareTo(Student s) {
 		Student otherStudent = (Student)s;
-		return (this.getName().compareTo(otherStudent.getName()));
+		return this.studentNumber - otherStudent.studentNumber;
 	}
+	
+//	Order lexicographically
+//	@Override 
+//	public int compareTo(Student s) {
+//		Student otherStudent = (Student)s;
+//		return (this.getName().compareTo(otherStudent.getName()));
+//	}
 	
 //	Bubble Sort for student objects
 	public static Student[] bubbleSortStudentArr(Student[] stuArr) {
