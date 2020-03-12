@@ -84,6 +84,7 @@ public class CorrespondenceDemo {
 		
 		try{
 			nextOffset = cipher.readFromBinaryFile();
+			System.out.println("***Message Information***");
 			System.out.println(cipher.toString());
 		}
 		catch(Exception e){

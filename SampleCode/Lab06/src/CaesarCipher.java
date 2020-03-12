@@ -15,8 +15,6 @@ public class CaesarCipher implements CipherIO{
 	int offset;
 	int nextOffset;
 	File msgFile;
-	
-	
 	Random ran = new Random();
 	//Constructor for writing message
 	public CaesarCipher(SecretAgent sender, SecretAgent receiver, File msgFile, int offset,
@@ -34,6 +32,7 @@ public class CaesarCipher implements CipherIO{
 		this.offset = offset;
 	}
 	
+	//Encryption methods
 	private int[] convertToAscii(String s) {
 		int[] letterArr = new int[s.length()];
 		
@@ -73,10 +72,14 @@ public class CaesarCipher implements CipherIO{
 		return decryptedStr;
 	}
 	
+	
+	
 	@Override
 	public String toString() {
-		return "Sender: " + sender.toString() + "\n" + 
-			   "Receiver: " + receiver.toString() + "\n " + 
+		return "Sender: " + "\n" + 
+					"\t" + sender.toString() + "\n" + 
+			   "Receiver: " + "\n" +
+			   		"\t" + receiver.toString() + "\n" + 
 			   "Message: " + this.msg + "\n" + 
 			   "Offset: " + this.offset + "\n" + 
 			   "Next Offset: " + this.nextOffset;
@@ -91,6 +94,8 @@ public class CaesarCipher implements CipherIO{
 		
 		output.writeUTF(encrypt(msg, offset));
 		
+		nextOffset = ran.nextInt(100) + 1;
+		output.writeInt(nextOffset);
 		
 		output.close();
 	}
@@ -102,23 +107,14 @@ public class CaesarCipher implements CipherIO{
 		sender = (SecretAgent)input.readObject();
 		receiver = (SecretAgent) input.readObject();
 		
+		//comment out line 108 and uncomment line 110 to see encrypted message in output
 		msg = decrypt(input.readUTF(), offset);
 		
-		nextOffset = ran.nextInt(15) + 1;
+		//msg = input.readUTF();
 		
-		System.out.println("***Message Information***");
-		
-		System.out.println("Sender: ");
-		System.out.println(sender.toString());
-		
-		System.out.println("Receiver:");
-		System.out.println(receiver.toString());
-		
-		System.out.println("Message:");
-		System.out.println(msg);
-		
-		System.out.println("Next Offset:");	
-		System.out.println(nextOffset);
+		nextOffset = input.readInt();
+
+		input.close();
 		
 		return nextOffset;
 	}

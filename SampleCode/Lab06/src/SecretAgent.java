@@ -15,8 +15,8 @@ public class SecretAgent implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Secret Agent: " + this.getFirstName() + " " + this.getLastName() + "\n" + "ID: " + this.getId();
-				
+		return "Secret Agent:" + "\n" + "\t" + "ID: " + this.getId() + "\n" + 
+				"\t" + "Name: " + this.getFirstName() + " " + this.getLastName();
 	}
 	
 	//Accessors
