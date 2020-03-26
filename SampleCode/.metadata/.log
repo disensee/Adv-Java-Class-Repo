@@ -15308,3 +15308,16 @@ java.lang.IllegalStateException: Connection pool shut down
 !MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wst.xml_ui.feature,3.17.0.v202001091420
 !SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2020-03-26 11:14:23.650
 !MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wst.xml_userdoc.feature,3.17.0.v202001081257
+!SESSION 2020-03-26 11:17:53.557 -----------------------------------------------
+eclipse.buildId=4.15.0.I20200305-0155
+java.version=1.8.0_221
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/dylan/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/dylan/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2020-03-26 11:18:06.733
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2020-03-26 11:18:22.664
+!MESSAGE No repository found at file:/Applications/Eclipse.app/Contents/Eclipse/configuration/org.eclipse.osgi/580/data/listener_1925729951/.
