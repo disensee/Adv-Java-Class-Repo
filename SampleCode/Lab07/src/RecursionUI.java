@@ -153,8 +153,8 @@ public class RecursionUI {
 		pnStatsPanel.add(lblSortTime);
 		
 		txtSortTime = new JTextField();
-		lblSortTime.setLabelFor(txtSortTime);
 		txtSortTime.setEditable(false);
+		lblSortTime.setLabelFor(txtSortTime);
 		txtSortTime.setBounds(6, 30, 130, 26);
 		pnStatsPanel.add(txtSortTime);
 		txtSortTime.setColumns(10);
@@ -165,8 +165,8 @@ public class RecursionUI {
 		pnStatsPanel.add(lblSearchTime);
 		
 		txtSearchTime = new JTextField();
-		lblSearchTime.setLabelFor(txtSearchTime);
 		txtSearchTime.setEditable(false);
+		lblSearchTime.setLabelFor(txtSearchTime);
 		txtSearchTime.setBounds(6, 118, 130, 26);
 		pnStatsPanel.add(txtSearchTime);
 		txtSearchTime.setColumns(10);
@@ -206,7 +206,7 @@ public class RecursionUI {
 			intArr = Recursion.mergeSort(intArr);
 			long endTime = System.currentTimeMillis();
 			
-			txtSortTime.setText(Long.toString(endTime - startTime));
+			txtSortTime.setText(Long.toString(endTime - startTime) + "ms");
 			refreshNumbers(intArr);
 			
 			
@@ -245,7 +245,7 @@ public class RecursionUI {
 			long endTime = System.currentTimeMillis();
 			lstNums.ensureIndexIsVisible(lstNums.getSelectedIndex());
 			
-			txtSearchTime.setText(Long.toString(endTime - startTime));
+			txtSearchTime.setText(Long.toString(endTime - startTime) + "ms");
 			
 			if(lstNums.getSelectedIndex() == -1) {
 				JOptionPane.showMessageDialog(null, "Search value does not exist in integer list!");
