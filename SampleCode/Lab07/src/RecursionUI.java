@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.DefaultListCellRenderer;
@@ -9,15 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JPanel;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
-import javax.swing.JTextPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
 
-public class GUI {
+public class RecursionUI {
 
 	private JFrame frmRecursionLab;
 	private JTextField txtNumInts;
@@ -41,7 +41,7 @@ public class GUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI window = new GUI();
+					RecursionUI window = new RecursionUI();
 					window.frmRecursionLab.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class GUI {
 	/**
 	 * Create the application.
 	 */
-	public GUI() {
+	public RecursionUI() {
 		initialize();
 	}
 
@@ -91,7 +91,7 @@ public class GUI {
 		frmRecursionLab.getContentPane().add(scrollPane);
 		
 		lstNums = new JList();
-		scrollPane.setColumnHeaderView(lstNums);
+		scrollPane.setViewportView(lstNums);
 		
 		lblNumOutput = new JLabel("# Output:");
 		lblNumOutput.setLabelFor(lstNums);
@@ -169,28 +169,50 @@ public class GUI {
 	
 	private void generateNumbers() {
 		int numOfInts = 0;
+		int minValue = 0;
+		int maxValue = 0;
 		Random rand = new Random();
 		try {
 			numOfInts = Integer.parseInt(txtNumInts.getText());
+			minValue = Integer.parseInt(txtRangeMin.getText());
+			maxValue = Integer.parseInt(txtRangeMax.getText());
 			if(numOfInts <= 0) {
 				throw new NumberFormatException();
 			}
+			if(minValue <= 0 || minValue >= 100) {
+				throw new RangeException();
+			}
+			if(maxValue > 100 || maxValue <=0) {
+				throw new RangeException();
+			}
+		}
+		catch (RangeException re) {
+			JOptionPane.showMessageDialog(null, "Integer range must be between 1 to 100");
 		}
 		catch(NumberFormatException nfe) {
-			JOptionPane.showMessageDialog(null, "Number of ints must be a valid positive number!");
+			JOptionPane.showMessageDialog(null, "All fields must contain a valid positive number!");
 		}
 		
-		Integer[] intArr = new Integer[numOfInts];
+		int[] intArr = new int[numOfInts];
 		for(int i = 0; i < intArr.length; i++) {
-			intArr[i] = rand.nextInt(50)+1;
+			intArr[i] = rand.nextInt((maxValue - minValue) + 1) + minValue;
 		}
+		 
+		
+		intArr = Recursion.mergeSort(intArr);
 		
 		refreshNumbers(intArr);
 		
 	}
 	
-	private void refreshNumbers(Integer[] intArr) {
-		lstNums.setListData(intArr);
+	private void refreshNumbers(int[] intArr) {
+		ArrayList<Integer> intList = new ArrayList<Integer>();
+		for(int i : intArr) {
+			intList.add(i);
+		}
+		
+		lstNums.setListData(intList.toArray());
+		lstNums.setVisibleRowCount(intArr.length);
 		DefaultListCellRenderer renderer = (DefaultListCellRenderer)lstNums.getCellRenderer();
 		renderer.setHorizontalAlignment(JLabel.CENTER);
 	}
