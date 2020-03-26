@@ -33,6 +33,9 @@ public class RecursionUI {
 	private JButton btnSearch;
 	private JTextField txtSortTime;
 	private JTextField txtSearchTime;
+	int[] intArr;
+	int minValue;
+	int maxValue;
 
 	/**
 	 * Launch the application.
@@ -129,6 +132,12 @@ public class RecursionUI {
 		txtSearchFor.setColumns(10);
 		
 		btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lstNums.clearSelection();
+				searchNumbers(); 
+			}
+		});
 		btnSearch.setBounds(262, 166, 88, 29);
 		frmRecursionLab.getContentPane().add(btnSearch);
 		
@@ -168,47 +177,50 @@ public class RecursionUI {
 	}
 	
 	private void generateNumbers() {
-		int numOfInts = 0;
-		int minValue = 0;
-		int maxValue = 0;
 		Random rand = new Random();
 		try {
-			numOfInts = Integer.parseInt(txtNumInts.getText());
+			int numOfInts = Integer.parseInt(txtNumInts.getText());
 			minValue = Integer.parseInt(txtRangeMin.getText());
 			maxValue = Integer.parseInt(txtRangeMax.getText());
-			if(numOfInts <= 0) {
+			
+			if(numOfInts <= 0 || txtNumInts.getText() == "" || numOfInts > Integer.MAX_VALUE) {
+				txtNumInts.grabFocus();
 				throw new NumberFormatException();
 			}
-			if(minValue <= 0 || minValue >= 100) {
-				throw new RangeException();
+			if(minValue <= 0 || minValue >= Integer.MAX_VALUE - 1 || minValue > maxValue || txtRangeMin.getText() == "") {
+				txtRangeMin.grabFocus();
+				throw new NumberFormatException();
 			}
-			if(maxValue > 100 || maxValue <=0) {
-				throw new RangeException();
+			if(maxValue >= Integer.MAX_VALUE || maxValue <= 0 || txtRangeMax.getText() == "") {
+				txtRangeMax.grabFocus();
+				throw new NumberFormatException();
 			}
-		}
-		catch (RangeException re) {
-			JOptionPane.showMessageDialog(null, "Integer range must be between 1 to 100");
+			
+			intArr = new int[numOfInts];
+			for(int i = 0; i < intArr.length; i++) {
+				intArr[i] = rand.nextInt((maxValue - minValue) + 1) + minValue;
+			}
+			
+			
+			long startTime = System.currentTimeMillis();
+			intArr = Recursion.mergeSort(intArr);
+			long endTime = System.currentTimeMillis();
+			
+			txtSortTime.setText(Long.toString(endTime - startTime));
+			refreshNumbers(intArr);
+			
+			
 		}
 		catch(NumberFormatException nfe) {
-			JOptionPane.showMessageDialog(null, "All fields must contain a valid positive number!");
+			JOptionPane.showMessageDialog(null, "All fields must contain a valid positive 32 bit integer.\nMinimum range value must be less than the maximum range value.");
 		}
-		
-		int[] intArr = new int[numOfInts];
-		for(int i = 0; i < intArr.length; i++) {
-			intArr[i] = rand.nextInt((maxValue - minValue) + 1) + minValue;
-		}
-		 
-		
-		intArr = Recursion.mergeSort(intArr);
-		
-		refreshNumbers(intArr);
-		
+
 	}
 	
 	private void refreshNumbers(int[] intArr) {
 		ArrayList<Integer> intList = new ArrayList<Integer>();
 		for(int i : intArr) {
-			intList.add(i);
+		intList.add(i);
 		}
 		
 		lstNums.setListData(intList.toArray());
@@ -216,4 +228,39 @@ public class RecursionUI {
 		DefaultListCellRenderer renderer = (DefaultListCellRenderer)lstNums.getCellRenderer();
 		renderer.setHorizontalAlignment(JLabel.CENTER);
 	}
+	
+	private void searchNumbers() {
+		
+		try {
+			if(intArr == null) {
+				throw new NullPointerException();
+			}
+			int searchValue = Integer.parseInt(txtSearchFor.getText());
+			if(searchValue < minValue || searchValue > maxValue) {
+				throw new RangeException();
+			}
+			
+			long startTime = System.currentTimeMillis();
+			lstNums.setSelectedIndex(Recursion.binarySearch(intArr, 0, intArr.length -1, searchValue));
+			long endTime = System.currentTimeMillis();
+			lstNums.ensureIndexIsVisible(lstNums.getSelectedIndex());
+			
+			txtSearchTime.setText(Long.toString(endTime - startTime));
+			
+			if(lstNums.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Search value does not exist in integer list!");
+			}
+
+		}
+		catch(NumberFormatException nfe) {
+			JOptionPane.showMessageDialog(null, "Please enter a valid positive integer");
+		}
+		catch(NullPointerException npe) {
+			JOptionPane.showMessageDialog(null, "Please generate a list of integers.");
+		}
+		catch(RangeException re) {
+			JOptionPane.showMessageDialog(null, "Please enter a number within the defined range");
+		}
+	}
 }
+

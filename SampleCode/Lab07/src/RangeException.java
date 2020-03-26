@@ -1,6 +1,5 @@
 
-public class RangeException extends Exception {
-	
+public class RangeException extends Exception{
 	public RangeException() {
 		super();
 	}
