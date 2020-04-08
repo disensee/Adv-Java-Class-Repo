@@ -6,8 +6,6 @@ public class Grade {
 	private int earnedPoints;
 	private int availablePoints;
 	
-	
-	
 	//Constructor
 	
 	public Grade(int earnedPoints, int availablePoints){
@@ -15,15 +13,13 @@ public class Grade {
 		this.availablePoints = availablePoints;
 	}
 	
-	
-	
 	public void setGrade(int earnedPoints, int availablePoints) {
 		this.earnedPoints = earnedPoints;
 		this.availablePoints = availablePoints;
 	}
 	
 	public double getPercentage() {
-		return Math.round((this.earnedPoints/this.availablePoints) * 100.0) / 100.0;
+		return ((double)earnedPoints/(double)availablePoints) * 100.00;
 	}
 	
 	
@@ -36,7 +32,7 @@ public class Grade {
 	}
 	
 	public String toString() {
-		return null;	
+		return String.format("%d : %d -- %.2f%%", earnedPoints, availablePoints, getPercentage());
 	}
 	
 }

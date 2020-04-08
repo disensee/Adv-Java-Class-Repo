@@ -7,7 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainGUI extends JFrame {
+public class GradeAnalyzer extends JFrame {
 
 	private JFrame frmGradeLabInitial;
 
@@ -18,7 +18,7 @@ public class MainGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainGUI window = new MainGUI();
+					GradeAnalyzer window = new GradeAnalyzer();
 					window.frmGradeLabInitial.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class MainGUI extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public MainGUI() {
+	public GradeAnalyzer() {
 		initialize();
 	}
 
@@ -38,17 +38,17 @@ public class MainGUI extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setTitle("Grade Analyzer");
 		frmGradeLabInitial = new JFrame();
 		frmGradeLabInitial.setBounds(100, 100, 450, 83);
-		frmGradeLabInitial.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frmGradeLabInitial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmGradeLabInitial.setTitle("Grade Analyzer");
 		
 		JButton btnGradeAnalyzer = new JButton("Grade Analyzer");
 		btnGradeAnalyzer.setBounds(0, 0, 450, 29);
 		btnGradeAnalyzer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//frmGradeLabInitial.setVisible(false);
-				GradeAnalyzerGUI gradeAnalyzer = new GradeAnalyzerGUI();
+				GradeStatistics gradeAnalyzer = new GradeStatistics();
 				gradeAnalyzer.frmGradeAnalyzer.setVisible(true);
 			}
 		});
@@ -56,6 +56,12 @@ public class MainGUI extends JFrame {
 		frmGradeLabInitial.getContentPane().add(btnGradeAnalyzer);
 		
 		JButton btnGpaCalculator = new JButton("GPA Calculator");
+		btnGpaCalculator.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GPACalculator gpaCalculator = new GPACalculator();
+				gpaCalculator.frmGPACalculator.setVisible(true);
+			}
+		});
 		btnGpaCalculator.setBounds(0, 30, 450, 29);
 		frmGradeLabInitial.getContentPane().add(btnGpaCalculator);
 	}
