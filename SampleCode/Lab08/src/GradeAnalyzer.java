@@ -47,7 +47,6 @@ public class GradeAnalyzer extends JFrame {
 		btnGradeAnalyzer.setBounds(0, 0, 450, 29);
 		btnGradeAnalyzer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//frmGradeLabInitial.setVisible(false);
 				GradeStatistics gradeAnalyzer = new GradeStatistics();
 				gradeAnalyzer.frmGradeAnalyzer.setVisible(true);
 			}
@@ -68,16 +67,5 @@ public class GradeAnalyzer extends JFrame {
 
 }
 
-
-//Here is how I did it...
-//In my main GUI here is one of the actionListeners...
-//frmGradeAnalyzer.dispose();
-//				//launch the new form
-//				GPAGradeAnalyzer gpaFrame = new GPAGradeAnalyzer();
-//				gpaFrame.setVisible(true);
-//
-//and ...
-//
-//public class GPAGradeAnalyzer extends JFrame {
 
 
