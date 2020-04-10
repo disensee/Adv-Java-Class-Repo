@@ -93,11 +93,7 @@ public class GradeStatistics extends JFrame {
 		JButton btnClearGrades = new JButton("Clear Grades");
 		btnClearGrades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gradeList.clear();
-				lstGrades.setListData(gradeList.toArray());
-				pnGradeSummary.removeAll();
-				pnGradeSummary.repaint();
-				txtEarnedPoints.grabFocus();
+				clearAll();
 			}
 		});
 		btnClearGrades.setBounds(159, 49, 145, 29);
@@ -211,5 +207,15 @@ public class GradeStatistics extends JFrame {
 		
 		pnGradeSummary.revalidate();
 		pnGradeSummary.repaint();
+	}
+	
+	private void clearAll() {
+		gradeList.clear();
+		lstGrades.setListData(gradeList.toArray());
+		pnGradeSummary.removeAll();
+		pnGradeSummary.repaint();
+		txtEarnedPoints.setText("");
+		txtAvailablePoints.setText("");
+		txtEarnedPoints.grabFocus();
 	}
 }

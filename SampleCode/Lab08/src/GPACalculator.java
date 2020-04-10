@@ -119,9 +119,7 @@ public class GPACalculator {
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				classGradeMap.clear();
-				lstGradesEntered.setListData(classGradeMap.values().toArray());
-				txtCourseId.grabFocus();
+				clearAll();
 			}
 		});
 		btnClear.setBounds(128, 121, 100, 29);
@@ -186,14 +184,16 @@ public class GPACalculator {
 	public void enterGrade() {
 		try {
 			String classId = txtCourseId.getText();
+			
+			if(classId.equalsIgnoreCase("")) {
+				throw new GradeException("Please enter a Course ID.");
+			}
+			
 			int credits = Integer.parseInt(txtCredits.getText());
 			double gradeEarned = gradeEarnedMap.get(cbGradeEarned.getSelectedItem());
 			
-			if(classId.equalsIgnoreCase("")) {
-				JOptionPane.showMessageDialog(null, "Please enter a course ID.");
-			}
 			
-			if(credits < 0) {
+			if(credits <= 0) {
 				throw new NumberFormatException();
 			}
 			
@@ -211,6 +211,9 @@ public class GPACalculator {
 		}
 		catch(NumberFormatException nfe) {
 			JOptionPane.showMessageDialog(null, "Credits must be a positive integer.");
+		}
+		catch(GradeException ge) {
+			JOptionPane.showMessageDialog(null, ge.getMessage());
 		}
 	}
 	
@@ -236,4 +239,12 @@ public class GPACalculator {
 		txtCumulativeGpa.setText(String.format("%.2f", (gradePoints/credits)));
 	}
 	
+	private void clearAll() {
+		classGradeMap.clear();
+		lstGradesEntered.setListData(classGradeMap.values().toArray());
+		txtCourseId.setText("");
+		txtCredits.setText("");
+		cbGradeEarned.setSelectedIndex(0);
+		txtCourseId.grabFocus();
+	}
 }
