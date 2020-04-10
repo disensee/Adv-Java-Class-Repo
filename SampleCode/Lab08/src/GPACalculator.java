@@ -244,6 +244,7 @@ public class GPACalculator {
 		lstGradesEntered.setListData(classGradeMap.values().toArray());
 		txtCourseId.setText("");
 		txtCredits.setText("");
+		txtCumulativeGpa.setText("");
 		cbGradeEarned.setSelectedIndex(0);
 		txtCourseId.grabFocus();
 	}
