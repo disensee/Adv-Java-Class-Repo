@@ -131,7 +131,7 @@ public class GradeStatistics extends JFrame {
 			int earnedPoints = Integer.parseInt(txtEarnedPoints.getText());
 			int availablePoints = Integer.parseInt(txtAvailablePoints.getText());
 			
-			if(earnedPoints < 0 || availablePoints < 0) {
+			if(earnedPoints < 0 || availablePoints <= 0) {
 				txtEarnedPoints.grabFocus();
 				throw new GradeException("Point values must be a positive integer value.");
 			}
