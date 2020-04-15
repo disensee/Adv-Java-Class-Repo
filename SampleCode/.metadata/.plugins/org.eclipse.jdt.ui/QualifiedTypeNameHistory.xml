@@ -10,7 +10,6 @@
 <fullyQualifiedTypeName name="SelectionSort"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.TreeMap"/>
 <fullyQualifiedTypeName name="javax.xml.parsers.DocumentBuilderFactory"/>
 <fullyQualifiedTypeName name="javax.xml.parsers.DocumentBuilder"/>
@@ -27,4 +26,5 @@
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="ClassGrade"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
