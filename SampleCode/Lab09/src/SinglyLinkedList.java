@@ -81,12 +81,12 @@ public class SinglyLinkedList<T> implements List<T> {
 		
 		ListNode<T> cNode = head;
 		while(cNode.nextNode != null) {
-//			if(cNode.data.equals(o)) {
-//				ListNode<T> holdNext = new ListNode(cNode.nextNode.data, cNode.nextNode.nextNode);
-//				cNode.data = holdNext.data;
-//				cNode.nextNode = holdNext.nextNode;
-//				return true;
-//			}
+			if(cNode.data.equals(o)) {
+				ListNode<T> holdNext = new ListNode(cNode.nextNode.data, cNode.nextNode.nextNode);
+				cNode.data = holdNext.data;
+				cNode.nextNode = holdNext.nextNode;
+				return true;
+			}
 			
 			cNode = cNode.nextNode;
 			if(cNode.data.equals(o)) {

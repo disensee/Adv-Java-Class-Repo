@@ -41,7 +41,7 @@ class Lab09Tests {
 		list.add("Morty");
 		list.add("Jerry");
 		
-		boolean removed = list.remove("Jerry");
+		boolean removed = list.remove("Morty");
 		assertEquals(true, removed);
 	}
 	
