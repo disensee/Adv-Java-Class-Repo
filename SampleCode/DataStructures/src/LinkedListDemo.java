@@ -27,6 +27,12 @@ public class LinkedListDemo {
 		System.out.println("Squdward was added...");
 		printList(friendsList);
 		
+		friendsList.lastIndexOf("Patrick");
+		
+		friendsList.clear();
+		
+		
+		
 		
 		//remove everything from the list
 		try {
