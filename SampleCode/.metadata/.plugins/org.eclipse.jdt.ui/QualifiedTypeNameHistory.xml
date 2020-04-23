@@ -30,4 +30,5 @@
 <fullyQualifiedTypeName name="SinglyLinkedList.ListNode"/>
 <fullyQualifiedTypeName name="CustomLinkedList.ListNode"/>
 <fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
+<fullyQualifiedTypeName name="java.util.EmptyStackException"/>
 </qualifiedTypeNameHistroy>
